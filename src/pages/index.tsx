@@ -1,7 +1,7 @@
 import Header from "@/components/dom/Header";
 import dynamic from "next/dynamic";
 import { Canvas, useFrame } from '@react-three/fiber'
-import { OrbitControls, Stars, Sky } from '@react-three/drei'
+import { OrbitControls, Stars, Sky, Text } from '@react-three/drei'
 import Controller from '../components/Controller'
 import { useState } from 'react'
 import { BiHomeHeart } from 'react-icons/bi'
@@ -25,7 +25,7 @@ const DOM = ({active}) => {
       </nav>
 
       <div className="button-container">
-        {active ? <button>Shop</button> : ''}
+        {active ? <button>Buy Now</button> : ''}
       </div>
     </div>
   )
@@ -40,7 +40,7 @@ const R3F = ({active, setActive}) => {
         <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
         <ambientLight intensity={0.5} />
         <directionalLight position={[-2, 5, 2]} intensity={1} />
-          <Controller active={active} setActive={setActive} />
+        <Controller active={active} setActive={setActive} />
     </>
   );
 };

@@ -1,11 +1,19 @@
 import { useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { A11yAnnouncer } from "@react-three/a11y";
-import { OrbitControls, Preload, Stats } from "@react-three/drei";
+import { OrbitControls, Preload, Stats, TransformControls } from "@react-three/drei";
+import Controller from '@/components/Controller'
 
 const Controls = () => {
   const control = useRef(null);
-  return <OrbitControls ref={control} enableZoom={false} enablePan={false}/>;
+  return <OrbitControls 
+  ref={control} 
+  enableZoom={false} 
+  enablePan={false} 
+  maxAzimuthAngle={Math.PI / 4}
+  maxPolarAngle={Math.PI}
+  minAzimuthAngle={-Math.PI / 4}
+  minPolarAngle={0}/>;
 };
 const CanvasWrapper = ({ children }) => {
   return (
@@ -20,6 +28,7 @@ const CanvasWrapper = ({ children }) => {
         }}
       >
         {/* <Stats /> */}
+        
         <Controls />
         <Preload all />
         {children}
