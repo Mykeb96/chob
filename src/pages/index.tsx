@@ -32,16 +32,25 @@ const DOM = ({active}) => {
 };
 
 
-const Footer = () => {
+const Footer = ({active}) => {
+
 
   return (
     <div className="footer-container">
-      <footer>
+
+      {active ? '' : <footer>
         <Review name={'jerry'}/>
         <Review name={'jerry'}/>
         <Review name={'jerry'}/>
         <Review name={'jerry'}/>
-      </footer>
+      </footer>}
+
+      {/* <footer>
+        <Review name={'jerry'}/>
+        <Review name={'jerry'}/>
+        <Review name={'jerry'}/>
+        <Review name={'jerry'}/>
+      </footer> */}
     </div>
   )
 }
@@ -75,7 +84,7 @@ export default function Page() {
     <>
       <DOM active={active}/>
       <R3F active={active} setActive={setActive}/>
-      <Footer />
+      <Footer active={active}/>
       
     </>
   );
