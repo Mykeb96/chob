@@ -23,9 +23,10 @@ const CanvasWrapper = ({ children }) => {
         // @ts-ignore
         mode="concurrent"
         style={{
-          position: "absolute",
-          top: 0,
+          width: '100vw',
+          height: '100vh'
         }}
+        className='my-canvas'
       >
         {/* <Stats /> */}
         

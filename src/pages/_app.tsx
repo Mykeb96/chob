@@ -36,6 +36,8 @@ function App({ Component, pageProps = { title: "index" } }: AppProps) {
   //@ts-ignore
   const children = Component(pageProps).props.children;
 
+  // console.log(children)
+
   return (
     <>
       <Header title={pageProps.title} />

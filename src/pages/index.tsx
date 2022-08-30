@@ -3,13 +3,13 @@ import dynamic from "next/dynamic";
 import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, Stars, Sky, Text } from '@react-three/drei'
 import Controller from '../components/Controller'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { BiHomeHeart } from 'react-icons/bi'
+import Review from '@/components/Review'
 
 // const Box = dynamic(() => import("@/components/canvas/Box"), {
 //   ssr: false,
 // });
-
 
 
 // DOM elements here
@@ -18,10 +18,10 @@ const DOM = ({active}) => {
     <div>
       <nav>
         {active ? '' : <span>FAQ</span>}
-        {active ? '' : <span>Reviews</span>}
+        {active ? '' : <span>Contact</span>}
         {active ? '' : <BiHomeHeart className="home"/>}
         {active ? '' : <span>Shop</span>}
-        {active ? '' : <span>Contact</span>}
+        {active ? '' : <span>Reviews</span>}
       </nav>
 
       <div className="button-container">
@@ -30,6 +30,21 @@ const DOM = ({active}) => {
     </div>
   )
 };
+
+
+const Footer = () => {
+
+  return (
+    <div className="footer-container">
+      <footer>
+        <Review name={'jerry'}/>
+        <Review name={'jerry'}/>
+        <Review name={'jerry'}/>
+        <Review name={'jerry'}/>
+      </footer>
+    </div>
+  )
+}
 
 //canvas
 const R3F = ({active, setActive}) => {
@@ -47,12 +62,21 @@ const R3F = ({active, setActive}) => {
 
 export default function Page() {
 
+  useEffect(() => {
+    // console.log(window.innerHeight, window.innerWidth)
+})
+
+  // const {innerWidth, innerHeight} = window;
+  // console.log(window)
+
   const [active, setActive] = useState(false)
 
   return (
     <>
       <DOM active={active}/>
       <R3F active={active} setActive={setActive}/>
+      <Footer />
+      
     </>
   );
 }

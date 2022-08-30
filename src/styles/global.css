@@ -6,35 +6,32 @@ html {
     width: 100vw;
     margin: 0;
     padding: 0;
-}
-
-canvas {
-    height: 100vh;
-    width: 100vw;
-    /* background: linear-gradient(180deg, pink 1%, white); */
+    overflow-y: hidden;
 }
 
 nav {
     margin-top: 10px;
+    
     width: 100vw;
-    text-align: center;
+    margin: auto;
     display: flex;
-    justify-content: space-evenly;
-    align-items: flex-end;
+    justify-content: center;
+    /* flex-wrap: wrap; */
+    
 }
 
 nav > span {
-    width: 200px;
     transition: 0.3s;
     font-size: 2.5rem;
     color: white;
-    margin-left: 60px;
-    margin-right: 60px;
     font-family: 'Aboreto', cursive;
     font-weight: bold;
+    margin-left: 3vw;
+    margin-right: 3vw;
 }
 
 nav > span:hover {
+    color: rgb(249, 208, 215);
     transition: 0.3s;
     cursor: pointer;
     /* text-shadow: 0 0 10px #ffffff; */
@@ -49,10 +46,10 @@ nav > span:hover {
 
 .home {
     color: white;
-    font-size: 4rem;
+    font-size: 3rem;
     align-self: center;
-    margin-left: 10px;
-    margin-right: 10px;
+    flex-shrink: 0;
+    width: 100px;
 }
 
 .home:hover > :first-child {
@@ -104,6 +101,65 @@ nav > span:hover {
     animation: 1s glitch;
     animation-timing-function: steps(2, end);
   }
+
+  .review-image {
+    width: 5vw;
+  }
+
+  .review-container {
+    transition: 0.3s;
+    padding: 10px 0 10px 20px;
+    background: rgba(255, 255, 255, 0.126);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    width: 20%;
+    border-radius: 14px;
+    border: 2px solid white;
+    justify-content: space-evenly;
+  }
+
+  .review-container:hover {
+    transition: 0.3s;
+    box-shadow: 10px 10px rgba(0, 0, 0, 0.26);
+    transform: translateY(-5px);
+  }
+
+  .review-container:hover {
+    cursor: pointer;
+  }
+
+  .review-sub-container {
+    padding-left: 10%;
+    padding-right: 10%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .review-sub-container > span {
+    padding-bottom: 10px;
+  }
+
+
+  footer {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    width: 100vw;
+    height: fit-content;
+    /* margin-top: 87vh; */
+    
+  }
+
+  .footer {
+    top: 85% !important;
+    height: 150px !important;
+    padding-top: 1vh;
+    /* display: flex;
+    align-items: flex-end; */
+  }
+
+
   
   @keyframes glitch {
     0% {
@@ -155,3 +211,27 @@ nav > span:hover {
   button:hover {
     cursor: pointer;
   }
+
+  @media (max-width: 854px) {
+    nav {
+      flex-direction: column;
+    }
+
+    .home {
+      position: absolute;
+      top: 0;
+      align-self: flex-end;
+      
+    }
+
+    nav > span {
+      width: fit-content;
+    }
+
+  }
+
+ @media (max-width: 816px) {
+  footer {
+    display: none;
+  }
+ }
