@@ -13,15 +13,15 @@ import Review from '@/components/Review'
 
 
 // DOM elements here
-const DOM = ({active}) => {
+const DOM = ({active, toggleModal}) => {
   return (
     <div>
       <nav>
-        {active ? '' : <span>FAQ</span>}
-        {active ? '' : <span>Contact</span>}
-        {active ? '' : <BiHomeHeart className="home"/>}
-        {active ? '' : <span>Shop</span>}
-        {active ? '' : <span>Reviews</span>}
+        {active || (toggleModal > 0) ? '' : <span>FAQ</span>}
+        {active || (toggleModal > 0) ? '' : <span>Contact</span>}
+        {active || (toggleModal > 0) ? '' : <BiHomeHeart className="home"/>}
+        {active || (toggleModal > 0) ? '' : <span>Shop</span>}
+        {active || (toggleModal > 0) ? '' : <span>Reviews</span>}
       </nav>
 
       <div className="button-container">
@@ -31,26 +31,39 @@ const DOM = ({active}) => {
   )
 };
 
+const DOM2 = () => {
+  return <div></div>
+};
 
-const Footer = ({active}) => {
+
+const Footer = ({active, toggleModal, setToggleModal}) => {
 
 
   return (
     <div className="footer-container">
 
-      {active ? '' : <footer>
-        <Review name={'jerry'}/>
-        <Review name={'jerry'}/>
-        <Review name={'jerry'}/>
-        <Review name={'jerry'}/>
+      {active || (toggleModal > 0) ? '' : <footer>
+        <Review tag={1} toggleModal={toggleModal} setToggleModal={setToggleModal} name={'jerry'}/>
+        <Review tag={2} toggleModal={toggleModal} setToggleModal={setToggleModal} name={'jerry'}/>
+        <Review tag={3} toggleModal={toggleModal} setToggleModal={setToggleModal} name={'jerry'}/>
+        <Review tag={4} toggleModal={toggleModal} setToggleModal={setToggleModal} name={'jerry'}/>
       </footer>}
 
-      {/* <footer>
-        <Review name={'jerry'}/>
-        <Review name={'jerry'}/>
-        <Review name={'jerry'}/>
-        <Review name={'jerry'}/>
-      </footer> */}
+    </div>
+  )
+}
+
+const Modal = (props) => {
+
+  return (
+
+    <div className="modal-background">
+      <div className="modal">
+        
+
+        <button id='modal-button' onClick={() => props.setToggleModal(0)}>Close</button>
+         
+      </div>
     </div>
   )
 }
@@ -69,22 +82,28 @@ const R3F = ({active, setActive}) => {
   );
 };
 
-export default function Page() {
-
-  useEffect(() => {
-    // console.log(window.innerHeight, window.innerWidth)
-})
-
-  // const {innerWidth, innerHeight} = window;
-  // console.log(window)
-
-  const [active, setActive] = useState(false)
+const R3F2 = () => {
 
   return (
     <>
-      <DOM active={active}/>
+    </>
+  );
+};
+
+export default function Page() {
+
+  const [active, setActive] = useState(false)
+  const [toggleModal, setToggleModal] = useState(0)
+
+
+
+  return (
+    <>
+      <DOM active={active} toggleModal={toggleModal}/>
       <R3F active={active} setActive={setActive}/>
-      <Footer active={active}/>
+      <Footer toggleModal={toggleModal} setToggleModal={setToggleModal} active={active}/>
+      <R3F2 />
+      {toggleModal != 0 ? <Modal toggleModal={toggleModal} setToggleModal={setToggleModal} /> : <DOM2 />}
       
     </>
   );

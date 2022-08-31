@@ -2,7 +2,7 @@ import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import React from "react";
 import useStore from "@/helpers/store";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Header from "@/components/dom/Header";
 import Dom from "@/components/layout/dom";
 import dynamic from "next/dynamic";
@@ -14,7 +14,11 @@ const Canvas = dynamic(() => import("@/components/layout/canvas"), {
   
 });
 
+
+
+
 const AppLayout = ({ children }) => {
+
   // We assume the DOM comes first, then canvas
   // And they can even alternate if they want (DOM, Canvas, DOM, Canvas)
   const newChildren = React.Children.map(children, (child, index) =>
@@ -27,6 +31,8 @@ const AppLayout = ({ children }) => {
 function App({ Component, pageProps = { title: "index" } }: AppProps) {
   const router = useRouter();
   const { setRouter } = useStore();
+
+
 
   useEffect(() => {
     setRouter(router);

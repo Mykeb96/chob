@@ -8,7 +8,7 @@ const Dom = ({ children }) => {
 
   return (
     <div
-      className={children.type.name == 'DOM' ? 'dom' : 'footer'}
+      className={children.type.name}
       style={{
         position: "absolute",
         top: 0,
