@@ -16,6 +16,8 @@ const Controls = () => {
   minPolarAngle={0}/>;
 };
 const CanvasWrapper = ({ children }) => {
+
+  console.log (children.type.name)
   return (
     <>
       <Canvas
@@ -30,7 +32,8 @@ const CanvasWrapper = ({ children }) => {
       >
         {/* <Stats /> */}
         
-        <Controls />
+        {/* <Controls /> */}
+        {children.type.name == 'R3Fshop' ? '' : <Controls />}
         <Preload all />
         {children}
       </Canvas>

@@ -1,11 +1,12 @@
 import Header from "@/components/dom/Header";
 import dynamic from "next/dynamic";
 import { Canvas, useFrame } from '@react-three/fiber'
-import { OrbitControls, Stars, Sky, Text, Center, Text3D } from '@react-three/drei'
+import { OrbitControls, Stars, Sky, Text } from '@react-three/drei'
 import Controller from '../components/Controller'
 import { useState, useEffect } from 'react'
 import { BiHomeHeart } from 'react-icons/bi'
 import Review from '@/components/Review'
+import Link from "next/link";
 
 // const Box = dynamic(() => import("@/components/canvas/Box"), {
 //   ssr: false,
@@ -20,12 +21,12 @@ const DOM = ({active, toggleModal}) => {
         {active || (toggleModal > 0) ? '' : <span>FAQ</span>}
         {active || (toggleModal > 0) ? '' : <span>Contact</span>}
         {active || (toggleModal > 0) ? '' : <BiHomeHeart className="home"/>}
-        {active || (toggleModal > 0) ? '' : <span>Shop</span>}
+        {active || (toggleModal > 0) ? '' : <Link href='/shop'><span>Shop</span></Link>}
         {active || (toggleModal > 0) ? '' : <span>Reviews</span>}
       </nav>
 
       <div className="button-container">
-        {active ? <button>Buy Now</button> : ''}
+        {active ? <Link href='/shop'><button>Buy Now</button></Link> : ''}
       </div>
     </div>
   )
@@ -109,18 +110,19 @@ const Modal = (props) => {
 }
 
 //canvas
-const R3F = ({active, setActive}) => {
+const R3F = ({active, setActive, textDisabled, setTextDisabled}) => {
+
+  
 
   return (
     <>
-      <Sky distance={450000} sunPosition={[0, 1, 1]} inclination={0} azimuth={0.25} />
+      <Sky distance={450000} sunPosition={[0, 1, 1]} inclination={0} azimuth={0.25} onClick={() => setTextDisabled(true)}/>
         <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
         <ambientLight intensity={0.5} />
         <directionalLight position={[-2, 5, 2]} intensity={1} />
+        {textDisabled ? '' : <Text anchorY='bottom' anchorX='center' scale={[2, 2, 2]} color='white' position={[0, 0.8, 1]}>Click or Drag!</Text>}
         <Controller active={active} setActive={setActive} />
-        <Center top left>
-          <Text>hello</Text>
-        </Center>
+        
     </>
   );
 };
@@ -137,13 +139,14 @@ export default function Page() {
 
   const [active, setActive] = useState(false)
   const [toggleModal, setToggleModal] = useState(0)
+  const [textDisabled, setTextDisabled] = useState(false)
 
 
 
   return (
     <>
       <DOM active={active} toggleModal={toggleModal}/>
-      <R3F active={active} setActive={setActive}/>
+      <R3F active={active} setActive={setActive} textDisabled={textDisabled} setTextDisabled={setTextDisabled} />
       <Footer toggleModal={toggleModal} setToggleModal={setToggleModal} active={active}/>
       <R3F2 />
       {toggleModal != 0 ? <Modal toggleModal={toggleModal} setToggleModal={setToggleModal} /> : <DOM2 />}
@@ -152,10 +155,10 @@ export default function Page() {
   );
 }
 
-// export async function getStaticProps() {
-//   return {
-//     props: {
-//       title: "Welcome!",
-//     },
-//   };
-// }
+export async function getStaticProps() {
+  return {
+    props: {
+      title: "Welcome!",
+    },
+  };
+}

@@ -29,14 +29,14 @@ const AppLayout = ({ children }) => {
 };
 
 function App({ Component, pageProps = { title: "index" } }: AppProps) {
-  const router = useRouter();
-  const { setRouter } = useStore();
+  // const router = useRouter();
+  // const { setRouter } = useStore();
 
 
 
-  useEffect(() => {
-    setRouter(router);
-  }, [setRouter, router]);
+  // useEffect(() => {
+  //   setRouter(router);
+  // }, [setRouter, router]);
 
   // Get the children from each page so we can split them
   //@ts-ignore
