@@ -33,7 +33,7 @@ const DOM = ({active, toggleModal}) => {
 };
 
 const DOM2 = () => {
-  return <div></div>
+  return <div style={{display: 'none'}}></div>
 };
 
 
@@ -116,11 +116,11 @@ const R3F = ({active, setActive, textDisabled, setTextDisabled}) => {
 
   return (
     <>
-      <Sky distance={450000} sunPosition={[0, 1, 1]} inclination={0} azimuth={0.25} onClick={() => setTextDisabled(true)}/>
+      <Sky distance={450000} sunPosition={[0, 1, 1]} inclination={0} azimuth={0.25} />
         <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
         <ambientLight intensity={0.5} />
         <directionalLight position={[-2, 5, 2]} intensity={1} />
-        {textDisabled ? '' : <Text anchorY='bottom' anchorX='center' scale={[2, 2, 2]} color='white' position={[0, 0.8, 1]}>Click or Drag!</Text>}
+        {textDisabled ? '' : <Text anchorY='bottom' anchorX='center' scale={[1.5, 1.5, 1.5]} color='white' position={[0, 0.8, 1]}>Click or Drag!</Text>}
         <Controller active={active} setActive={setActive} />
         
     </>
@@ -142,11 +142,10 @@ export default function Page() {
   const [textDisabled, setTextDisabled] = useState(false)
 
 
-
   return (
     <>
       <DOM active={active} toggleModal={toggleModal}/>
-      <R3F active={active} setActive={setActive} textDisabled={textDisabled} setTextDisabled={setTextDisabled} />
+      <R3F active={active} setActive={setActive} textDisabled={textDisabled} setTextDisabled={setTextDisabled}/>
       <Footer toggleModal={toggleModal} setToggleModal={setToggleModal} active={active}/>
       <R3F2 />
       {toggleModal != 0 ? <Modal toggleModal={toggleModal} setToggleModal={setToggleModal} /> : <DOM2 />}

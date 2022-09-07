@@ -229,14 +229,14 @@ nav > span:hover {
     align-items: center !important;
   }
 
-  .y, .w {
-      height: 100vh !important;
-      width: 100vw !important;
-      background: rgba(0, 0, 0, 0.792) !important;
-      display: flex !important;
-      justify-content: center !important;
-      align-items: center !important;
-  }
+  /* .DOM:nth-of-type(4) {
+    position: absolute;
+    top: 85% !important;
+    height: 150px !important;
+    padding-top: 1vh;
+    
+  } */
+
 
   .modal {
     background: rgba(255, 255, 255, 0.212);
@@ -250,6 +250,22 @@ nav > span:hover {
     flex-direction: column;
     text-align: center;
     
+  }
+
+  .M {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    height: 100vh !important;
+    width: 100vw !important;
+    background: rgba(0, 0, 0, 0.842);
+  }
+
+  .w {
+    position: absolute;
+    top: 85% !important;
+    height: 150px !important;
+    padding-top: 1vh;
   }
 
   .modal h2 {

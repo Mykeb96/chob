@@ -17,7 +17,7 @@ const Controls = () => {
 };
 const CanvasWrapper = ({ children }) => {
 
-  console.log (children.type.name)
+
   return (
     <>
       <Canvas

@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 
 
 const Dom = ({ children }) => {
+  // console.log(children.type.name)
 
   const ref = useRef(null);
 

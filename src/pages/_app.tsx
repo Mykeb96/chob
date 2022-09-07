@@ -19,6 +19,8 @@ const Canvas = dynamic(() => import("@/components/layout/canvas"), {
 
 const AppLayout = ({ children }) => {
 
+  
+
   // We assume the DOM comes first, then canvas
   // And they can even alternate if they want (DOM, Canvas, DOM, Canvas)
   const newChildren = React.Children.map(children, (child, index) =>
@@ -28,7 +30,12 @@ const AppLayout = ({ children }) => {
   return newChildren;
 };
 
+
+
 function App({ Component, pageProps = { title: "index" } }: AppProps) {
+
+
+
   // const router = useRouter();
   // const { setRouter } = useStore();
 
@@ -47,7 +54,7 @@ function App({ Component, pageProps = { title: "index" } }: AppProps) {
   return (
     <>
       <Header title={pageProps.title} />
-      <AppLayout>{children}</AppLayout>
+      <AppLayout {...pageProps}>{children}</AppLayout>
     </>
   );
 }
