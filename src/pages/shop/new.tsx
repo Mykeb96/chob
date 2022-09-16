@@ -176,7 +176,7 @@ const FORM = () => {
                                     }
                                     
                 }} value='Button Pad Perforation'/>
-                <FormControlLabel control={<Checkbox style={{color: 'pink'}} sx={{'& .MuiSvgIcon-root': { fontSize: 25 }}} />} label="Potentiometer Replacement - $5" name="mods" onChange={(event) => {
+                <FormControlLabel control={<Checkbox style={{color: 'pink'}} sx={{'& .MuiSvgIcon-root': { fontSize: 25 }}} />} label="Potentiometer Replacement (NOT CHOB COMPATIBLE) - $5" name="mods" onChange={(event) => {
                                     props.handleChange(event)
                                     if ((event.target as HTMLInputElement).checked == true) {
                                       setTotal(total + 5)

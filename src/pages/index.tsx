@@ -129,7 +129,6 @@ const R3F = ({active, setActive, textDisabled, setTextDisabled, toggleModal}) =>
         <ambientLight intensity={0.5} />
         <directionalLight position={[-2, 5, 2]} intensity={1} />
         {textDisabled ? '' : <Text anchorY='bottom' anchorX='center' scale={[1.5, 1.5, 1.5]} color='white' position={[0, 0.8, 1]}>Click or Drag!</Text>}
-        {/* <Controller active={active} setActive={setActive} /> */}
         {toggleModal > 0 ? '' : <Controller active={active} setActive={setActive} />}
         
     </>
