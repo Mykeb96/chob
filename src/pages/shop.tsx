@@ -10,10 +10,14 @@ import dynamic from 'next/dynamic'
 const DOM = () => {
   return (
     <>
+    <div className="shop-nav">
+    <Link href='/'><BiHomeHeart className="home-button2"/></Link>
+    </div>
     <div className="shop-buttons">
     <Link href='/shop/new'><button className="shop-button1" id="s_button">New</button></Link>
     <Link href='/shop/modify'><button className="shop-button2" id="s_button">Modify</button></Link>
     </div>
+
     </>
   )
 }
