@@ -24,8 +24,8 @@ const DOM = ({active, toggleModal}) => {
   return (
     <div>
       <nav>
-        {active || (toggleModal > 0) ? '' : <span>FAQ</span>}
-        {active || (toggleModal > 0) ? '' : <span>Contact</span>}
+        {active || (toggleModal > 0) ? '' : <Link href='/faq'><span>FAQ</span></Link>}
+        {active || (toggleModal > 0) ? '' : <Link href='/contact'><span>Contact</span></Link>}
         {active || (toggleModal > 0) ? '' : <BiHomeHeart className="home"/>}
         {active || (toggleModal > 0) ? '' : <Link href='/shop'><span>Shop</span></Link>}
         {active || (toggleModal > 0) ? '' : <span>Reviews</span>}

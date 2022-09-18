@@ -293,7 +293,9 @@ nav > span:hover {
   .modal, .I {
     background: rgba(255, 255, 255, 0.212);
     border-radius: 8px;
-    height: 80vh;
+    height: fit-content;
+    padding-bottom: 20px;
+    padding-top: 20px;
     width: 60vw;
     /* margin: auto; */
     display: flex;
@@ -521,4 +523,21 @@ nav > span:hover {
   footer {
     display: none;
   }
+ }
+
+ textarea:focus {
+  outline: 0;
+ }
+
+ .accordian {
+  font-weight: bold;
+  background-color: rgba(255, 192, 203, 0.626);
+  
+ }
+
+ .accordian2{
+  background-color: rgba(255, 192, 203, 0.363);
+  font-style: italic;
+  line-height: 25px;
+  letter-spacing: 0.8px;
  }
