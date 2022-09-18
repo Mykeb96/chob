@@ -9,6 +9,7 @@ import dynamic from "next/dynamic";
 // import "@/styles/index.css";
 import "@/styles/global.css"
 
+
 const Canvas = dynamic(() => import("@/components/layout/canvas"), {
   ssr: false,
   

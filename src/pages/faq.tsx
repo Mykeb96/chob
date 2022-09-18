@@ -25,11 +25,12 @@ const FORM = () => {
           aria-controls="panel1a-content"
           id="panel1a-header"
           className="accordian"
+          style={{backgroundColor: 'rgba(255, 192, 203, 0.626)', fontWeight: 'bold'}}
         >
-          Where can you ship to and how much is it?
+          <p>Where can you ship to and how much is it?</p>
         </AccordionSummary>
-        <AccordionDetails className="accordian2">
-        - As of right now I'm only taking orders in the PNW, if shipping is necessary it<br /> will be added to an order's total, shipping estimate is ~$10 (this is only an estimate)
+        <AccordionDetails className="accordian2" style={{backgroundColor: 'rgba(255, 192, 203, 0.363)', fontStyle: 'italic', lineHeight: '25px', letterSpacing: '0.8px'}}>
+        <p>- As of right now I&apos;m only taking orders in the PNW, if shipping is necessary it<br /> will be added to an order&apos;s total, shipping estimate is ~$10 (this is only an estimate)</p>
         </AccordionDetails>
       </Accordion>
       <Accordion>
@@ -38,11 +39,12 @@ const FORM = () => {
           aria-controls="panel2a-content"
           id="panel2a-header"
           className="accordian"
+          style={{backgroundColor: 'rgba(255, 192, 203, 0.626)', fontWeight: 'bold'}}
         >
-          What does X mod do?
+          <p>What does X mod do?</p>
         </AccordionSummary>
-        <AccordionDetails className="accordian2">
-        - I should and probably will make a document to describe what everything is, but<br /> until then your best bet is to <Link href="/contact">contact me</Link> and ask personally
+        <AccordionDetails className="accordian2" style={{backgroundColor: 'rgba(255, 192, 203, 0.363)', fontStyle: 'italic', lineHeight: '25px', letterSpacing: '0.8px'}}>
+        <p>- I should and probably will make a document to describe what everything is, but<br /> until then your best bet is to <Link href="/contact">contact me</Link> and ask personally</p>
         </AccordionDetails>
       </Accordion>
       <Accordion>
@@ -51,11 +53,12 @@ const FORM = () => {
           aria-controls="panel1a-content"
           id="panel1a-header"
           className="accordian"
+          style={{backgroundColor: 'rgba(255, 192, 203, 0.626)', fontWeight: 'bold'}}
         >
-          What's a Chob?
+          <p>What&apos;s a Chob?</p>
         </AccordionSummary>
-        <AccordionDetails className="accordian2">
-        - A Chob is a PhobGCC that I made, I twisted the name a bit to make it more personal<br /> to me and because I thought it would be funny
+        <AccordionDetails className="accordian2" style={{backgroundColor: 'rgba(255, 192, 203, 0.363)', fontStyle: 'italic', lineHeight: '25px', letterSpacing: '0.8px'}}>
+        <p>- A Chob is a PhobGCC that I made, I twisted the name a bit to make it more personal<br /> to me and because I thought it would be funny</p>
         </AccordionDetails>
       </Accordion>
       <Accordion>
@@ -64,11 +67,12 @@ const FORM = () => {
           aria-controls="panel1a-content"
           id="panel1a-header"
           className="accordian"
+          style={{backgroundColor: 'rgba(255, 192, 203, 0.626)', fontWeight: 'bold'}}
         >
-          What's the difference between T2/T3 send in and "no send in"?
+          <p>What&apos;s the difference between T2/T3 send in and &apos;no send in&apos;?</p>
         </AccordionSummary>
-        <AccordionDetails className="accordian2">
-        - T2/T3 send in's are for people to send me a controller to modify/turn into a Chob.<br /> "No send in's" are me making a controller from scratch using my inventory instead
+        <AccordionDetails className="accordian2" style={{backgroundColor: 'rgba(255, 192, 203, 0.363)', fontStyle: 'italic', lineHeight: '25px', letterSpacing: '0.8px'}}>
+        <p>- T2/T3 send in&apos;s are for people to send me a controller to modify/turn into a Chob.<br /> &apos;No send in&apos;s&apos; are me making a controller from scratch using my inventory instead</p>
         </AccordionDetails>
       </Accordion>
       <Accordion>
@@ -77,11 +81,12 @@ const FORM = () => {
           aria-controls="panel1a-content"
           id="panel1a-header"
           className="accordian"
+          style={{backgroundColor: 'rgba(255, 192, 203, 0.626)', fontWeight: 'bold'}}
         >
-          Is there any difference between a T2/T3?
+          <p>Is there any difference between a T2/T3?</p>
         </AccordionSummary>
-        <AccordionDetails className="accordian2">
-        - T2 controllers use metal stickboxes that don't last as long as the plastic ones found<br /> on T3 controller motherboards, you can find out which one you have using this<br /> website as a guide https://gccontrollerlibrary.com/guides/ (note: if your controller<br /> has had a shell swap at some point the best way to determine the T# is by opening the controller)
+        <AccordionDetails className="accordian2" style={{backgroundColor: 'rgba(255, 192, 203, 0.363)', fontStyle: 'italic', lineHeight: '25px', letterSpacing: '0.8px'}}>
+        <p>- T2 controllers use metal stickboxes that don&apos;t last as long as the plastic ones found<br /> on T3 controller motherboards, you can find out which one you have using this<br /> website as a guide https://gccontrollerlibrary.com/guides/ (note: if your controller<br /> has had a shell swap at some point the best way to determine the T# is by opening the controller)</p>
         </AccordionDetails>
       </Accordion>
       <Accordion>
@@ -90,11 +95,12 @@ const FORM = () => {
           aria-controls="panel1a-content"
           id="panel1a-header"
           className="accordian"
+          style={{backgroundColor: 'rgba(255, 192, 203, 0.626)', fontWeight: 'bold'}}
         >
-          How long does it usually take to get my order done?
+          <p>How long does it usually take to get my order done?</p>
         </AccordionSummary>
-        <AccordionDetails className="accordian2">
-        - It varies depending on how long my queue is backed up and how much time I have to work<br /> on them, however I can give the estimate of 2-4 weeks once the order is placed
+        <AccordionDetails className="accordian2" style={{backgroundColor: 'rgba(255, 192, 203, 0.363)', fontStyle: 'italic', lineHeight: '25px', letterSpacing: '0.8px'}}>
+        <p>- It varies depending on how long my queue is backed up and how much time I have to work<br /> on them, however I can give the estimate of 2-4 weeks once the order is placed</p>
         </AccordionDetails>
       </Accordion>
     </div>

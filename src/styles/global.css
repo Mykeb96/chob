@@ -347,7 +347,7 @@ nav > span:hover {
     align-items: center;
   }
 
-  .FORM, .m, .p, .k {
+  .FORM, .m, .p, .k, .K {
     height: 100vh;
     width: 100vw;
     display: flex;
@@ -529,15 +529,32 @@ nav > span:hover {
   outline: 0;
  }
 
- .accordian {
-  font-weight: bold;
-  background-color: rgba(255, 192, 203, 0.626);
-  
- }
+.review-page-container{
+  height: 100vh;
+  width: 60vw;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
 
- .accordian2{
-  background-color: rgba(255, 192, 203, 0.363);
-  font-style: italic;
-  line-height: 25px;
-  letter-spacing: 0.8px;
- }
+.review-card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 200px;
+  
+}
+
+.review-card-info{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.review-card-info span {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-family: 'Aboreto', cursive;
+}

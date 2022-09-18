@@ -28,7 +28,7 @@ const DOM = ({active, toggleModal}) => {
         {active || (toggleModal > 0) ? '' : <Link href='/contact'><span>Contact</span></Link>}
         {active || (toggleModal > 0) ? '' : <BiHomeHeart className="home"/>}
         {active || (toggleModal > 0) ? '' : <Link href='/shop'><span>Shop</span></Link>}
-        {active || (toggleModal > 0) ? '' : <span>Reviews</span>}
+        {active || (toggleModal > 0) ? '' : <Link href='/reviews'><span>Reviews</span></Link>}
       </nav>
 
       <div className="button-container">
