@@ -29,9 +29,9 @@ const FORM = () => {
         firstName: '',
         lastName: '',
         email: '',
-        checked: [],
+        checked: '',
         approxTotal: 0,
-        shell: [],
+        shell: '',
         mods: []
       }}
       onSubmit={async (values) => {
@@ -87,32 +87,43 @@ const FORM = () => {
 
             <select
               name="checked"
-              className="select-box"
-              value={props.values.checked}
-              onChange={event => {
+              onChange={(event) => {
                 props.handleChange(event)
-                // console.log(event)
+                console.log(event.target)
+                if(event.target.value == 'No Send in'){
+                  setChobTotal(160)
+                } else if (event.target.value == 'T3 Send in'){
+                  setChobTotal(120)
+                } else if (event.target.value == 'T2 Send in'){
+                  setChobTotal(145)
+                } else if (event.target.value == 'Brand New Ult Black Build'){
+                  setChobTotal(160)
+                } else if (event.target.value == ""){
+                  setChobTotal(0)
+                }
               }}
               size={1}
+              value={props.values.checked}
+              multiple={false}
               onBlur={props.handleBlur}
               style={{ display: "block", border: '1px solid pink', background: 'rgba(0, 0, 0, 0.253)', color: 'white', borderRadius: '4px', marginBottom: '10px', fontSize: '20px' }}
             >
-              <option value="" label="Select Chob Type" onClick={() => setChobTotal(0)}>
-                Select a color{" "}
+              <option value="" label="Select Chob Type">
+                
               </option>
-              <option value="No Send in" label="No Send in - $160 + Shell color" onClick={() => setChobTotal(160)}>
+              <option value="No Send in" label="No Send in - $160 + Shell color">
                 {" "}
                 No Send in - $160 + Shell color
               </option>
-              <option value="T3 Send in" label="T3 Send in - $120 + Shell Swap (Optional)" onClick={() => setChobTotal(120)}>
+              <option value="T3 Send in" label="T3 Send in - $120 + Shell Swap (Optional)">
                 T3 Send in - $120 + Shell Swap (Optional)
               </option>
               
-              <option value="T2 Send in" label="T2 Send in - $145 + Shell Swap (Optional)" onClick={() => setChobTotal(145)}>
+              <option value="T2 Send in" label="T2 Send in - $145 + Shell Swap (Optional)">
               T2 Send in - $145 + Shell Swap (Optional)
               </option>
 
-              <option value="Brand New Ult Black Build" label="Brand New Ult Black Build - $160" onClick={() => setChobTotal(160)}>
+              <option value="Brand New Ult Black Build" label="Brand New Ult Black Build - $160">
               Brand New Ult Black Build - $160
               </option>
             </select>
@@ -120,8 +131,23 @@ const FORM = () => {
             <select
               name="shell"
               value={props.values.shell}
-              onChange={props.handleChange}
+              onChange={(event) => {
+                props.handleChange(event)
+                console.log(event.target)
+                if(event.target.value == ''){
+                  setShellTotal(0)
+                } else if (event.target.value == 'Ultimate Black'){
+                  setShellTotal(20)
+                } else if (event.target.value == 'Black'){
+                  setShellTotal(20)
+                } else if (event.target.value == 'Platinum'){
+                  setShellTotal(25)
+                } else if (event.target.value == "Indigo"){
+                  setShellTotal(30)
+                }
+              }}
               onBlur={props.handleBlur}
+              multiple={false}
               style={{ display: "block", border: '1px solid pink', background: 'rgba(0, 0, 0, 0.253)', color: 'white', borderRadius: '4px', fontSize: '20px' }}
             >
               <option value="" label="Select Shell" onClick={() => setShellTotal(0)}>
