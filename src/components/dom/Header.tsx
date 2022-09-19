@@ -20,7 +20,7 @@ type HeaderProps = {
 
 const Header = ({ title, coverImage }: HeaderProps) => {
   const { author, url, title: defaultTitle, description, keywords } = config;
-  const pageTitle = title ? `${title} - ${defaultTitle}` : defaultTitle;
+  const pageTitle = title ? title : defaultTitle;
   const schema = generateSchema(url, title);
   return (
     <>
@@ -29,7 +29,7 @@ const Header = ({ title, coverImage }: HeaderProps) => {
         <meta charSet="utf-8" />
         <meta name="description" content={description} />
         <meta name="keywords" content={keywords.join(", ")} />
-        <meta name="image" content={coverImage ?? "/social/opengraph.png"} />
+        <meta name="image" content={coverImage ?? "/social/controller.png"} />
 
         {/* Schema.org tags */}
         <script type="application/ld+json">{JSON.stringify(schema)}</script>
@@ -39,7 +39,7 @@ const Header = ({ title, coverImage }: HeaderProps) => {
         <meta property="og:url" content={url} />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={description} />
-        <meta property="og:image" content="/social/opengraph.png" />
+        <meta property="og:image" content="/social/controller.png" />
         {/* <meta property="fb:app_id" content={config.fbAppID} /> */}
 
         {/* Twitter Card tags */}

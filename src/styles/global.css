@@ -262,7 +262,7 @@ nav > span:hover {
     
   }
 
-  .Footer, .B {
+  .Footer, .y {
     top: 80% !important;
     height: 200px !important;
     /* padding-top: 1vh; */
@@ -290,7 +290,7 @@ nav > span:hover {
   } */
 
 
-  .modal, .I {
+  .modal{
     background: rgba(255, 255, 255, 0.212);
     border-radius: 8px;
     height: fit-content;
@@ -306,7 +306,7 @@ nav > span:hover {
     
   }
 
-  .M, .I {
+  .M, .C {
     display: flex !important;
     align-items: center;
     justify-content: center;
@@ -347,7 +347,7 @@ nav > span:hover {
     align-items: center;
   }
 
-  .FORM, .m, .p, .k, .K {
+  .FORM, .m, .p, .k, .K, .v, .D {
     height: 100vh;
     width: 100vw;
     display: flex;

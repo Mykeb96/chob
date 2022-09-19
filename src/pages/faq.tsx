@@ -130,7 +130,7 @@ export default Page
 export async function getStaticProps() {
   return {
     props: {
-      title: 'New',
+      title: 'FAQ',
     },
   }
 }

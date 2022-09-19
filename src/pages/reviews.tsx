@@ -12,12 +12,12 @@ import austin from '@/assets/images/Austin.jpg'
 import Review from "@/components/Review";
 import ReviewCard from '@/components/ReviewCard'
 
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
-import Typography from '@mui/material/Typography';
+// import Box from '@mui/material/Box';
+// import Modal from '@mui/material/Modal';
+// import Typography from '@mui/material/Typography';
 
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+// import Button from 'react-bootstrap/Button';
+// import Card from 'react-bootstrap/Card';
 
 
 const style = {
@@ -89,7 +89,7 @@ export default Page
 export async function getStaticProps() {
   return {
     props: {
-      title: 'New',
+      title: 'Reviews',
     },
   }
 }

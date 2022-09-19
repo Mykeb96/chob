@@ -1,4 +1,5 @@
 import Header from "@/components/dom/Header";
+import Head from "next/head";
 import dynamic from "next/dynamic";
 import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, Stars, Sky, Text } from '@react-three/drei'
@@ -23,6 +24,10 @@ import austin from '@/assets/images/Austin.jpg'
 const DOM = ({active, toggleModal}) => {
   return (
     <div>
+      <Head>
+        <title>Chob</title>
+        <link rel="shortcut icon" href="/social/controller.png" />
+      </Head>
       <nav>
         {active || (toggleModal > 0) ? '' : <Link href='/faq'><span>FAQ</span></Link>}
         {active || (toggleModal > 0) ? '' : <Link href='/contact'><span>Contact</span></Link>}
@@ -162,10 +167,3 @@ export default function Page() {
   );
 }
 
-export async function getStaticProps() {
-  return {
-    props: {
-      title: "Welcome!",
-    },
-  };
-}
