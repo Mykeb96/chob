@@ -56,7 +56,7 @@ const Footer = ({active, toggleModal, setToggleModal}) => {
 
       {active || (toggleModal > 0) ? '' : <footer>
         <Review tag={1} toggleModal={toggleModal} setToggleModal={setToggleModal} name={'Nathan'} img={nathan}/>
-        <Review tag={2} toggleModal={toggleModal} setToggleModal={setToggleModal} name={'Cheyone'} img={nox}/>
+        <Review tag={2} toggleModal={toggleModal} setToggleModal={setToggleModal} name={'Cheyonne'} img={nox}/>
         <Review tag={3} toggleModal={toggleModal} setToggleModal={setToggleModal} name={'Austin'} img={austin}/>
         <Review tag={4} toggleModal={toggleModal} setToggleModal={setToggleModal} name={'Bryce'} img={bryce}/>
       </footer>}
@@ -82,7 +82,7 @@ const Modal = (props) => {
       })
     } else if (props.toggleModal == 2) {
       setSelectedReview({
-        name: 'Cheyone',
+        name: 'Cheyonne',
         review: 'Controller DANK. Tactile Z is based',
         img: nox
       })

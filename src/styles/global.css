@@ -214,7 +214,7 @@ nav > span:hover {
     text-align: center;
     display: flex;
     align-items: center;
-    width: 17%;
+    width: 19%;
     border-radius: 8px;
     justify-content: space-evenly;
   }
@@ -347,7 +347,7 @@ nav > span:hover {
     align-items: center;
   }
 
-  .FORM, .m, .p, .k, .K, .v, .D {
+  .FORM, .m, .p, .k, .K, .v, .D, .f, .d, .S, .b {
     height: 100vh;
     width: 100vw;
     display: flex;
@@ -361,11 +361,35 @@ nav > span:hover {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: rgba(0, 0, 0, 0.447);
+    /* background: rgba(0, 0, 0, 0.447); */
     border-radius: 10px;
     padding: 10px 20px 10px 20px;
     width: fit-content;
-    
+    /* height: 794px; */
+  }
+
+
+  .new-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* background: rgba(0, 0, 0, 0.447); */
+    border-radius: 10px;
+    padding: 10px 20px 10px 20px;
+    width: fit-content;
+    /* height: 794px; */
+    /* overflow-y: scroll; */
+  }
+
+  .contact-container{
+    background: rgba(0, 0, 0, 0.447);
+  }
+
+  .modify-container {
+    height: fit-content !important;
+    overflow-y: scroll;
+    background: rgba(0, 0, 0, 0.447);
   }
 
   .form-container span,
@@ -373,6 +397,19 @@ nav > span:hover {
   .form-container h5 {
     color: white;
     font-family: 'Aboreto', cursive;
+  }
+
+  .new-container span,
+  .new-container h4,
+  .new-container h5 {
+    color: white;
+    font-family: 'Aboreto', cursive;
+    /* padding: 0; */
+    margin: 0;
+  }
+
+  .new-container h4{
+    padding-top: 10px;
   }
 
   #email-label,
@@ -407,15 +444,21 @@ nav > span:hover {
   }
 
   .back-arrow {
-    position: absolute;
+    /* position: absolute;
     top: 0;
-    left: 0;
+    left: 0; */
     font-size: 70px;
     cursor: pointer;
     color: white;
-    margin-left: 30px;
-    margin-top: 30px;
+    /* margin-left: 30px; */
+    /* margin-top: 30px; */
   }
+
+.big-container {
+  height: 100vh;
+  width: fit-content;
+
+}
 
   .back-arrow:hover {
     color: pink;
@@ -449,7 +492,12 @@ nav > span:hover {
     width: 100vw;
     text-align: center;
   }
-  
+
+  .faq-container {
+    height: 444px;
+    overflow-y: scroll;
+  }
+
   @keyframes glitch {
     0% {
       clip-path: var(--slice-1);
@@ -519,7 +567,7 @@ nav > span:hover {
 
   }
 
- @media (max-width: 816px) {
+ @media (max-width: 1226px) {
   footer {
     display: none;
   }
@@ -552,9 +600,94 @@ nav > span:hover {
   align-items: center;
 }
 
+/* .nav-container{
+  display: flex;
+  width: 100vw;
+  
+  justify-content: space-between;
+} */
+
 .review-card-info span {
   margin-top: 10px;
   margin-bottom: 10px;
   font-weight: bold;
   font-family: 'Aboreto', cursive;
+}
+
+@media(max-width: 674px){
+  .form-container{
+    /* margin-top: 60px; */
+    padding: 10px 20px 10px 20px;
+    
+  }
+}
+
+@media(max-width: 466px){
+  .faq-container{
+    height: 480px;
+  }
+}
+
+@media(max-width: 860px){
+  .shop-buttons{
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .shop-button1{
+    margin-bottom: 20px;
+  }
+}
+
+@media(max-width: 1428px){
+  .mod-options{
+    flex-direction: column;
+    /* align-items: center;
+    justify-content: center; */
+  }
+
+  .modify-container {
+    /* padding-bottom: 20px; */
+  }
+
+  .mod-options1{
+    align-items: center;
+  }
+
+  .mod-options2{
+    align-items: center;
+  }
+
+  .back-arrow{
+    /* margin-left: 15px; */
+    
+  }
+
+  .big-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media(max-height: 822px){
+  .modify-container {
+    height: 84vh !important;
+  }
+
+  .review-page-container {
+    height: 90vh;
+    overflow-y: scroll;
+  }
+
+  .big-container {
+    justify-content: flex-start;
+  }
+
+/* 
+  .FORM {
+    align-items: flex-start !important;
+  } */
+
 }

@@ -19,6 +19,7 @@ const FORM = () => {
     <div>
     <Link href='/'><BiHomeHeart className="back-arrow"/></Link>
     
+    <div className="faq-container">
     <Accordion>
         <AccordionSummary
           expandIcon='+'
@@ -103,6 +104,7 @@ const FORM = () => {
         <p>- It varies depending on how long my queue is backed up and how much time I have to work<br /> on them, however I can give the estimate of 2-4 weeks once the order is placed</p>
         </AccordionDetails>
       </Accordion>
+      </div>
     </div>
     </>
   )

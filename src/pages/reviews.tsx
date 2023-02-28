@@ -52,18 +52,18 @@ const FORM = () => {
 
 
   return (
-    <>
+    <div className="big-container">
     <Link href='/'><BiHomeHeart className="back-arrow"/></Link>
       <div className='review-page-container'>
 
         <ReviewCard img={nathan} name={'Nathan'} handleOpen={handleOpen} setSelectedReview={setSelectedReview}/>
-        <ReviewCard img={nox} name={'Cheyone'} handleOpen={handleOpen} setSelectedReview={setSelectedReview} />
+        <ReviewCard img={nox} name={'Cheyonne'} handleOpen={handleOpen} setSelectedReview={setSelectedReview} />
         <ReviewCard img={bryce} name={'Bryce'} handleOpen={handleOpen} setSelectedReview={setSelectedReview} />
         <ReviewCard img={austin} name={'Austin'} handleOpen={handleOpen} setSelectedReview={setSelectedReview} />
 
 
       </div>
-    </>
+    </div>
   )
 }
 // canvas components goes here

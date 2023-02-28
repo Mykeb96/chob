@@ -1,25 +1,48 @@
 import Link from "next/link";
 import { BiHomeHeart } from 'react-icons/bi'
 import { Stars, Sky } from '@react-three/drei'
-import { useState } from 'react'
-import { Formik } from 'formik';
-import Checkbox from '@mui/material/Checkbox';
+import { Formik, FormikHelpers } from 'formik';
 import { TextareaAutosize } from "@mui/material";
 import TextField from "@mui/material/TextField";
-import { GiReturnArrow } from 'react-icons/gi'
+import emailjs from '@emailjs/browser';
+import React, { useRef } from 'react';
+import * as Yup from 'yup';
 
 
 
 // dom components goes here
 const FORM = () => {
 
+  const SignupSchema = Yup.object().shape({
+    firstName: Yup.string()
+      .min(2, 'Too Short!')
+      .max(50, 'Too Long!')
+      .required('Required'),
+    lastName: Yup.string()
+      .min(2, 'Too Short!')
+      .max(50, 'Too Long!')
+      .required('Required'),
+    email: Yup.string().email('Invalid email').required('Required'),
+  });
+
+  const form = useRef();
+
+
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+  interface Values {
+    firstName: string;
+    lastName: string;
+    email: string;
+    message: string;
+  }
 
 
   return (
-    <>
-    <div>
+    <div className="big-container">
     <Link href='/'><BiHomeHeart className="back-arrow"/></Link>
+
+    <div className="contact-container">
     <Formik
       initialValues={{
         firstName: '',
@@ -27,14 +50,30 @@ const FORM = () => {
         email: '',
         message: '',
       }}
-      onSubmit={async (values) => {
+      validationSchema={SignupSchema}
+      onSubmit={async (values, {setValues}) => {
+
         await sleep(500);
-        alert(JSON.stringify(values, null, 2));
+        emailjs.sendForm('service_z8ks1wy', 'contact_form', form.current, 'yK_EpYPRUWUzDrDBq')
+        .then((result) => {
+            console.log(result.text);
+            alert('Email successfully sent! Expect to recieve and email from Chainlink within a few business days');
+        }, (error) => {
+            console.log(error.text);
+        });
+        await sleep(500);
+        window.location.reload();
+        
+
+       
+
+       
+    
         
       }}
     >
-      {props => (
-             <form onSubmit={props.handleSubmit} className='form-container'>
+      {({values, errors, touched, handleSubmit, handleChange}) => (
+             <form ref={form} onSubmit={handleSubmit} className='form-container'>
 
                 
               <TextField sx={{"& .MuiOutlinedInput-root": {
@@ -47,7 +86,10 @@ const FORM = () => {
                               borderColor: "white"
                             }
                           }
-                          }} id="firstName" name='firstName' label="First Name" variant="outlined" onChange={props.handleChange} margin='normal'/>
+                          }} id="firstName" name='firstName' label="First Name" variant="outlined" onChange={handleChange} margin='normal'/>
+                          {errors.firstName && touched.firstName ? (
+                            <div style={{color: 'red'}}>{errors.firstName}</div>
+                          ) : null}
                 <TextField sx={{"& .MuiOutlinedInput-root": {
                               "& > fieldset": { borderColor: "pink" },
                         },     "& .MuiOutlinedInput-root.Mui-focused": {
@@ -58,7 +100,10 @@ const FORM = () => {
                               borderColor: "white"
                             }
                           }
-                          }}  id="lastName" name='lastName' label="Last Name" variant="outlined" onChange={props.handleChange} margin='normal'/>
+                          }}  id="lastName" name='lastName' label="Last Name" variant="outlined" onChange={handleChange} margin='normal'/>
+                          {errors.lastName && touched.lastName ? (
+                            <div style={{color: 'red'}}>{errors.lastName}</div>
+                          ) : null}
                 <TextField sx={{"& .MuiOutlinedInput-root": {
                               "& > fieldset": { borderColor: "pink" },
                         },     "& .MuiOutlinedInput-root.Mui-focused": {
@@ -69,14 +114,17 @@ const FORM = () => {
                               borderColor: "white"
                             }
                           }
-                          }}  id="email" name='email' label="Email" variant="outlined" onChange={props.handleChange} margin='normal' style={{width: '500px'}} fullWidth/>
+                          }}  id="email" name='email' label="Email" variant="outlined" onChange={handleChange} margin='normal' style={{width: '400px'}} fullWidth/>
+                          {errors.email && touched.email ? (
+                            <div style={{color: 'red'}}>{errors.email}</div>
+                          ) : null}
 
               <TextareaAutosize
                 aria-label="empty textarea"
-                style={{ width: 550, height: 200, background: 'rgba(0, 0, 0, 0.253)', border: '1px solid pink', borderRadius: '4px', color: 'white', marginTop: '20px' }}
+                style={{ width: '374px', height: 200, background: 'rgba(0, 0, 0, 0.253)', border: '1px solid pink', borderRadius: '4px', color: 'white', marginTop: '20px' }}
                 placeholder='Hello! Be sure to check the FAQ first - it could save you some time!'
                 name='message'
-                onChange={props.handleChange}
+                onChange={handleChange}
                 
               />
               
@@ -86,7 +134,7 @@ const FORM = () => {
            )}
     </Formik>
     </div>
-    </>
+    </div>
   )
 }
 // canvas components goes here

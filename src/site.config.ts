@@ -1,16 +1,16 @@
 const config = {
-  title: `R3F Next Starter`,
-  url: `https://github.com/whoisryosuke/r3f-next-starter`,
+  title: `Chainlink Chobs`,
+  url: `https://www.chob.link/`,
   description:
-    "This is a batteries included template for using React Three Fiber (R3F) with NextJS 🔋.",
-  author: "Ryosuke Hana",
+    "The next evolution of controllers is here with chob",
+  author: "Mykael Barnes",
   keywords: [
     "nextjs",
     "react-three-fiber",
     "r3f template",
     "r3f next template",
   ],
-  twitter: "@whoisryosuke",
+  twitter: "@xMykeb",
 };
 
 export default config;

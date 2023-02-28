@@ -21,6 +21,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.7.0",
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
     "@mui/material": "^5.10.5",
@@ -41,6 +42,7 @@
     "three": "^0.143.0",
     "three-stdlib": "^2.10.2",
     "vercel": "^28.2.5",
+    "yup": "^0.32.11",
     "zustand": "^4.0.0-rc.1"
   },
   "devDependencies": {

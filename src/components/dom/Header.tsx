@@ -50,7 +50,7 @@ const Header = ({ title, coverImage }: HeaderProps) => {
         <meta name="twitter:image" content="/social/twitter.png" />
 
         {/* Social icons */}
-        <link rel="icon" href="/social/favicon-32x32.png" />
+        <link rel="icon" href="/social/controller.png" />
         <link
           rel="apple-touch-icon"
           sizes="48x48"

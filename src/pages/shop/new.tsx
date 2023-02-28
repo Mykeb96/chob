@@ -1,13 +1,14 @@
 import Link from "next/link";
 import { BiHomeHeart } from 'react-icons/bi'
 import { Stars, Sky } from '@react-three/drei'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { Formik, validateYupSchema } from 'formik';
 import Checkbox from '@mui/material/Checkbox';
 import { FormControlLabel, FormControl, InputLabel, NativeSelect, Select } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { GiReturnArrow } from 'react-icons/gi'
-import { setHttpAgentOptions } from "next/dist/server/config";
+import emailjs from '@emailjs/browser';
+import * as Yup from 'yup';
 
 
 const FORM = () => {
@@ -15,37 +16,59 @@ const FORM = () => {
   const [total, setTotal] = useState<number>(0)
   const [chobTotal, setChobTotal] = useState<number>(0)
   const [shellTotal, setShellTotal] = useState<number>(0)
+  const form = useRef();
 
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
+  const SignupSchema = Yup.object().shape({
+    firstName: Yup.string()
+      .min(2, 'Too Short!')
+      .max(50, 'Too Long!')
+      .required('Required'),
+    lastName: Yup.string()
+      .min(2, 'Too Short!')
+      .max(50, 'Too Long!')
+      .required('Required'),
+    email: Yup.string().email('Invalid email').required('Required'),
+  });
+
 
   return (
-    <>
-    <div>
+    <div className="big-container">
+
     <Link href='/shop'><GiReturnArrow className="back-arrow"/></Link>
-    <Link href='/'><BiHomeHeart className="home-button"/></Link>
+
+    <div className="modify-container">
     <Formik
       initialValues={{
         firstName: '',
         lastName: '',
         email: '',
-        checked: '',
+        send: '',
         approxTotal: 0,
         shell: '',
-        mods: []
+        checked: []
       }}
+      validationSchema={SignupSchema}
       onSubmit={async (values) => {
-
-        values.approxTotal = total + chobTotal + shellTotal
-
         
         await sleep(500);
-        alert(JSON.stringify(values, null, 2));
+        emailjs.sendForm('service_z8ks1wy', 'modify_template', form.current, 'yK_EpYPRUWUzDrDBq')
+        .then((result) => {
+            console.log(result.text);
+            alert('Email successfully sent! Expect to recieve and email from Chainlink within a few business days');
+        }, (error) => {
+            console.log(error.text);
+        });
+        // alert(JSON.stringify(values, null, 2));
+        await sleep(1000);
+        window.location.reload();
+
         
       }}
     >
-      {props => (
-             <form onSubmit={props.handleSubmit} className='form-container'>
+      {({values, errors, touched, handleSubmit, handleChange, handleBlur}) => (
+             <form ref={form} onSubmit={handleSubmit} className='new-container'>
 
                 
               <TextField sx={{"& .MuiOutlinedInput-root": {
@@ -58,7 +81,10 @@ const FORM = () => {
                               borderColor: "white"
                             }
                           }
-                          }} id="firstName" name='firstName' label="First Name" variant="outlined" onChange={props.handleChange} margin='normal'/>
+                          }} id="firstName" name='firstName' label="First Name" variant="outlined" onChange={handleChange} margin='normal'/>
+                          {errors.firstName && touched.firstName ? (
+                            <div style={{color: 'red'}}>{errors.firstName}</div>
+                          ) : null}
                 <TextField sx={{"& .MuiOutlinedInput-root": {
                               "& > fieldset": { borderColor: "pink" },
                         },     "& .MuiOutlinedInput-root.Mui-focused": {
@@ -69,7 +95,10 @@ const FORM = () => {
                               borderColor: "white"
                             }
                           }
-                          }}  id="lastName" name='lastName' label="Last Name" variant="outlined" onChange={props.handleChange} margin='normal'/>
+                          }}  id="lastName" name='lastName' label="Last Name" variant="outlined" onChange={handleChange} margin='normal'/>
+                          {errors.lastName && touched.lastName ? (
+                            <div style={{color: 'red'}}>{errors.lastName}</div>
+                          ) : null}
                 <TextField sx={{"& .MuiOutlinedInput-root": {
                               "& > fieldset": { borderColor: "pink" },
                         },     "& .MuiOutlinedInput-root.Mui-focused": {
@@ -80,15 +109,18 @@ const FORM = () => {
                               borderColor: "white"
                             }
                           }
-                          }}  id="email" name='email' label="Email" variant="outlined" onChange={props.handleChange} margin='normal' style={{width: '500px'}} fullWidth/>
+                          }}  id="email" name='email' label="Email" variant="outlined" onChange={handleChange} margin='normal' style={{width: '400px'}} fullWidth/>
+                          {errors.email && touched.email ? (
+                            <div style={{color: 'red'}}>{errors.email}</div>
+                          ) : null}
 
                 
 
 
             <select
-              name="checked"
+              name="send"
               onChange={(event) => {
-                props.handleChange(event)
+                handleChange(event)
                 console.log(event.target)
                 if(event.target.value == 'No Send in'){
                   setChobTotal(160)
@@ -103,9 +135,9 @@ const FORM = () => {
                 }
               }}
               size={1}
-              value={props.values.checked}
+              value={values.send}
               multiple={false}
-              onBlur={props.handleBlur}
+              onBlur={handleBlur}
               style={{ display: "block", border: '1px solid pink', background: 'rgba(0, 0, 0, 0.253)', color: 'white', borderRadius: '4px', marginBottom: '10px', fontSize: '20px' }}
             >
               <option value="" label="Select Chob Type">
@@ -130,42 +162,42 @@ const FORM = () => {
 
             <select
               name="shell"
-              value={props.values.shell}
+              value={values.shell}
               onChange={(event) => {
-                props.handleChange(event)
+                handleChange(event)
                 console.log(event.target)
                 if(event.target.value == ''){
                   setShellTotal(0)
-                } else if (event.target.value == 'Ultimate Black'){
+                } else if (event.target.value == 'Ultimate Black Shell'){
                   setShellTotal(20)
-                } else if (event.target.value == 'Black'){
+                } else if (event.target.value == 'Black Shell'){
                   setShellTotal(20)
-                } else if (event.target.value == 'Platinum'){
+                } else if (event.target.value == 'Platinum Shell'){
                   setShellTotal(25)
-                } else if (event.target.value == "Indigo"){
+                } else if (event.target.value == "Indigo Shell"){
                   setShellTotal(30)
                 }
               }}
-              onBlur={props.handleBlur}
+              onBlur={handleBlur}
               multiple={false}
               style={{ display: "block", border: '1px solid pink', background: 'rgba(0, 0, 0, 0.253)', color: 'white', borderRadius: '4px', fontSize: '20px' }}
             >
               <option value="" label="Select Shell" onClick={() => setShellTotal(0)}>
                 Select a Shell{" "}
               </option>
-              <option value="Ultimate Black" label="Ultimate Black - $20" onClick={() => setShellTotal(20)}>
+              <option value="Ultimate Black Shell" label="Ultimate Black - $20" onClick={() => setShellTotal(20)}>
                 {" "}
                 Ultimate Black - $20
               </option>
-              <option value="Black" label="Black - $20" onClick={() => setShellTotal(20)}>
+              <option value="Black Shell" label="Black - $20" onClick={() => setShellTotal(20)}>
                 Black - $20
               </option>
               
-              <option value="Platinum" label="Platinum - $25" onClick={() => setShellTotal(25)}>
+              <option value="Platinum Shell" label="Platinum - $25" onClick={() => setShellTotal(25)}>
                 Platinum - $25
               </option>
 
-              <option value="Indigo" label="Indigo - $30" onClick={() => setShellTotal(30)}>
+              <option value="Indigo Shell" label="Indigo - $30" onClick={() => setShellTotal(30)}>
               Indigo - $30
               </option>
             </select>
@@ -174,8 +206,8 @@ const FORM = () => {
                 <h5>** Stock may vary **</h5>
                 <div className="mod-options">
                 <div className="mod-options1">
-                <FormControlLabel control={<Checkbox style={{color: 'pink'}} sx={{'& .MuiSvgIcon-root': { fontSize: 25 }}}/>} label="No Reset Snapback Capacitor (NOT CHOB COMPATIBLE) - $35" name="mods" onChange={(event) => {
-                                    props.handleChange(event)
+                <FormControlLabel control={<Checkbox style={{color: 'pink'}} sx={{'& .MuiSvgIcon-root': { fontSize: 25 }}}/>} label="No Reset Snapback Capacitor (NOT CHOB COMPATIBLE) - $35" name="checked" onChange={(event) => {
+                                    handleChange(event)
                                     console.log(event)
                                     if ((event.target as HTMLInputElement).checked == true) {
                                       setTotal(total + 35)
@@ -184,8 +216,8 @@ const FORM = () => {
                                     }
                                     
                 }} value='No Reset Snapback Capacitor'/>
-                <FormControlLabel control={<Checkbox style={{color: 'pink'}} sx={{'& .MuiSvgIcon-root': { fontSize: 25 }}} id='test'/>} label="Bald Buttons - $25" name="mods" onChange={(event) => {
-                                    props.handleChange(event)
+                <FormControlLabel disabled={true} control={<Checkbox style={{color: 'pink'}} sx={{'& .MuiSvgIcon-root': { fontSize: 25 }}} id='test'/>} label="Bald Buttons - $25" name="checked" onChange={(event) => {
+                                    handleChange(event)
                                     if ((event.target as HTMLInputElement).checked == true) {
                                       setTotal(total + 35)
                                     } else {
@@ -193,8 +225,8 @@ const FORM = () => {
                                     }
                                     
                 }} value='Bald Buttons'/>
-                <FormControlLabel control={<Checkbox style={{color: 'pink'}} sx={{'& .MuiSvgIcon-root': { fontSize: 25 }}} />} label="Button Pad Perforation - $5" name="mods" onChange={(event) => {
-                                    props.handleChange(event)
+                <FormControlLabel control={<Checkbox style={{color: 'pink'}} sx={{'& .MuiSvgIcon-root': { fontSize: 25 }}} />} label="Button Pad Perforation - $5" name="checked" onChange={(event) => {
+                                    handleChange(event)
                                     if ((event.target as HTMLInputElement).checked == true) {
                                       setTotal(total + 25)
                                     } else {
@@ -202,8 +234,8 @@ const FORM = () => {
                                     }
                                     
                 }} value='Button Pad Perforation'/>
-                <FormControlLabel control={<Checkbox style={{color: 'pink'}} sx={{'& .MuiSvgIcon-root': { fontSize: 25 }}} />} label="Potentiometer Replacement (NOT CHOB COMPATIBLE) - $5" name="mods" onChange={(event) => {
-                                    props.handleChange(event)
+                <FormControlLabel control={<Checkbox style={{color: 'pink'}} sx={{'& .MuiSvgIcon-root': { fontSize: 25 }}} />} label="Potentiometer Replacement (NOT CHOB COMPATIBLE) - $5" name="checked" onChange={(event) => {
+                                    handleChange(event)
                                     if ((event.target as HTMLInputElement).checked == true) {
                                       setTotal(total + 5)
                                     } else {
@@ -211,8 +243,8 @@ const FORM = () => {
                                     }
                                     
                 }} value='Potentiometer Replacement'/>
-                <FormControlLabel control={<Checkbox style={{color: 'pink'}} sx={{'& .MuiSvgIcon-root': { fontSize: 25 }}} />} label="Stickbox Replacement - $15" name="mods" onChange={(event) => {
-                                    props.handleChange(event)
+                <FormControlLabel control={<Checkbox style={{color: 'pink'}} sx={{'& .MuiSvgIcon-root': { fontSize: 25 }}} />} label="Stickbox Replacement - $15" name="checked" onChange={(event) => {
+                                    handleChange(event)
                                     if ((event.target as HTMLInputElement).checked == true) {
                                       setTotal(total + 15)
                                     } else {
@@ -220,8 +252,8 @@ const FORM = () => {
                                     }
                                     
                 }} value='Stickbox Replacement'/>
-                <FormControlLabel control={<Checkbox style={{color: 'pink'}} sx={{'& .MuiSvgIcon-root': { fontSize: 25 }}} />} label="PTFE tape stablization - $10" name="mods" onChange={(event) => {
-                                    props.handleChange(event)
+                <FormControlLabel control={<Checkbox style={{color: 'pink'}} sx={{'& .MuiSvgIcon-root': { fontSize: 25 }}} />} label="PTFE tape stablization - $10" name="checked" onChange={(event) => {
+                                    handleChange(event)
                                     if ((event.target as HTMLInputElement).checked == true) {
                                       setTotal(total + 10)
                                     } else {
@@ -231,8 +263,8 @@ const FORM = () => {
                 }} value='PTFE Tape Stablization'/>
                 </div>
                 <div className="mod-options2">
-                <FormControlLabel control={<Checkbox style={{color: 'pink'}} sx={{'& .MuiSvgIcon-root': { fontSize: 25 }}} />} label="Stickbox Lubrication - $12" name="mods" onChange={(event) => {
-                                    props.handleChange(event)
+                <FormControlLabel control={<Checkbox style={{color: 'pink'}} sx={{'& .MuiSvgIcon-root': { fontSize: 25 }}} />} label="Stickbox Lubrication - $12" name="checked" onChange={(event) => {
+                                    handleChange(event)
                                     if ((event.target as HTMLInputElement).checked == true) {
                                       setTotal(total + 12)
                                     } else {
@@ -240,8 +272,8 @@ const FORM = () => {
                                     }
                                     
                 }} value='Stickbox Lubrication'/>
-                <FormControlLabel control={<Checkbox style={{color: 'pink'}} sx={{'& .MuiSvgIcon-root': { fontSize: 25 }}} />} label="Trigger Spring cut/lube - $8 ($5 cut only)" name="mods" onChange={(event) => {
-                                    props.handleChange(event)
+                <FormControlLabel control={<Checkbox style={{color: 'pink'}} sx={{'& .MuiSvgIcon-root': { fontSize: 25 }}} />} label="Trigger Spring cut/lube - $8 ($5 cut only)" name="checked" onChange={(event) => {
+                                    handleChange(event)
                                     if ((event.target as HTMLInputElement).checked == true) {
                                       setTotal(total + 8)
                                     } else {
@@ -249,8 +281,8 @@ const FORM = () => {
                                     }
                                     
                 }} value='Trigger Spring cut/lube'/>
-                <FormControlLabel control={<Checkbox style={{color: 'pink'}} sx={{'& .MuiSvgIcon-root': { fontSize: 25 }}} />} label="Retrobright - $10-$50" name="mods" onChange={(event) => {
-                                    props.handleChange(event)
+                <FormControlLabel control={<Checkbox style={{color: 'pink'}} sx={{'& .MuiSvgIcon-root': { fontSize: 25 }}} />} label="Retrobright - $10-$50" name="checked" onChange={(event) => {
+                                    handleChange(event)
                                     if ((event.target as HTMLInputElement).checked == true) {
                                       setTotal(total + 30)
                                     } else {
@@ -258,8 +290,8 @@ const FORM = () => {
                                     }
                                     
                 }} value='Retrobright'/>
-                <FormControlLabel control={<Checkbox style={{color: 'pink'}} sx={{'& .MuiSvgIcon-root': { fontSize: 25 }}} />} label="Tactile Z - $5" name="mods" onChange={(event) => {
-                                    props.handleChange(event)
+                <FormControlLabel control={<Checkbox style={{color: 'pink'}} sx={{'& .MuiSvgIcon-root': { fontSize: 25 }}} />} label="Tactile Z - $5" name="checked" onChange={(event) => {
+                                    handleChange(event)
                                     if ((event.target as HTMLInputElement).checked == true) {
                                       setTotal(total + 5)
                                     } else {
@@ -267,8 +299,8 @@ const FORM = () => {
                                     }
                                     
                 }} value='Tactile Z'/>
-                <FormControlLabel control={<Checkbox style={{color: 'pink'}} sx={{'& .MuiSvgIcon-root': { fontSize: 25 }}} />} label="Stick Replacement - $10" name="mods" onChange={(event) => {
-                                    props.handleChange(event)
+                <FormControlLabel control={<Checkbox style={{color: 'pink'}} sx={{'& .MuiSvgIcon-root': { fontSize: 25 }}} />} label="Stick Replacement - $10" name="checked" onChange={(event) => {
+                                    handleChange(event)
                                     if ((event.target as HTMLInputElement).checked == true) {
                                       setTotal(total + 10)
                                     } else {
@@ -276,8 +308,8 @@ const FORM = () => {
                                     }
                                     
                 }} value='Stick Replacement'/>
-                <FormControlLabel control={<Checkbox style={{color: 'pink'}} sx={{'& .MuiSvgIcon-root': { fontSize: 25 }}} />} label="Trigger Plugs - $5" name="mods" onChange={(event) => {
-                                    props.handleChange(event)
+                <FormControlLabel control={<Checkbox style={{color: 'pink'}} sx={{'& .MuiSvgIcon-root': { fontSize: 25 }}} />} label="Trigger Plugs - $5" name="checked" onChange={(event) => {
+                                    handleChange(event)
                                     if ((event.target as HTMLInputElement).checked == true) {
                                       setTotal(total + 5)
                                     } else {
@@ -292,11 +324,12 @@ const FORM = () => {
                <button className="form-submit">Submit</button>
 
                <span style={{marginTop: '10px'}}>Approximate Total: ${total + chobTotal + shellTotal}</span>
+               <input type="number" value={total + chobTotal + shellTotal} style={{display: 'none'}} name='approxTotal'/>
              </form>
            )}
     </Formik>
     </div>
-    </>
+    </div>
   )
 }
 // canvas components goes here
